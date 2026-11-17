@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GiwaSwap — Swap GIWA ETH ⇄ $tAMM on GIWA Sepolia</title>
+    <meta
+      name="description"
+      content="GiwaSwap is a single-page exchange on GIWA Sepolia (chain 91342) built with the Ammora SDK. Swap GIWA ETH and $tAMM on the Ammora V3 pool."
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="logo">🌊</span>
+          <div>
+            <h1>GiwaSwap</h1>
+            <p class="tagline">Swap GIWA ETH ⇄ $tAMM on GIWA Sepolia</p>
+          </div>
+        </div>
+        <button id="connectBtn" class="btn btn-primary">Connect Wallet</button>
+      </header>
+
+      <main>
+        <section class="card swap-card">
+          <div class="card-head">
+            <h2>Swap</h2>
+            <span id="chainBadge" class="badge">GIWA Sepolia · 91342</span>
+          </div>
+
+          <div class="field">
+            <div class="field-top">
+              <label for="amountIn">You pay</label>
+              <span class="balance">Balance: <span id="balanceIn">—</span>
+                <button id="maxBtn" class="linklike" type="button">MAX</button>
+              </span>
+            </div>
+            <div class="input-row">
+              <input id="amountIn" inputmode="decimal" placeholder="0.0" autocomplete="off" />
+              <button id="tokenInBtn" class="token-pill" type="button">
+                <span id="tokenInSymbol">ETH</span>
+              </button>
+            </div>
+          </div>
+
+          <button id="flipBtn" class="flip" type="button" aria-label="Switch direction">⇅</button>
+
+          <div class="field">
+            <div class="field-top">
+              <label>You receive (estimated)</label>
+              <span class="balance">Balance: <span id="balanceOut">—</span></span>
+            </div>
+            <div class="input-row">
+              <input id="amountOut" readonly placeholder="0.0" tabindex="-1" />
+              <span class="token-pill static"><span id="tokenOutSymbol">$tAMM</span></span>
+            </div>
+          </div>
+
+          <div id="quoteBox" class="quote-box">
+            <div class="quote-row"><span>Rate</span><span id="rateLine">—</span></div>
+            <div class="quote-row"><span>Minimum received (1% slippage)</span><span id="minOutLine">—</span></div>
+            <div class="quote-row"><span>Deadline</span><span>10 minutes</span></div>
+            <div class="quote-row"><span>Pool</span><span id="poolLine">—</span></div>
+          </div>
+
+          <button id="swapBtn" class="btn btn-swap" type="button" disabled>Enter an amount</button>
+          <p id="statusLine" class="status"></p>
+          <div id="txBox" class="tx-box hidden">
+            <span>Transaction:</span>
+            <a id="txLink" href="#" target="_blank" rel="noopener">—</a>
+          </div>
+        </section>
+
+        <section class="card info-card">
+          <h2>About this exchange</h2>
+          <p>
+            GiwaSwap swaps <strong>GIWA ETH</strong> and <strong>$tAMM</strong> on the Ammora V3
+            pool (<a id="poolLink" href="#" target="_blank" rel="noopener">0x1ef9…bcf8</a>) through
+            the Ammora NativeRouter. Quotes are read live from the pool on GIWA Sepolia
+            (chain 91342) — no mock data.
+          </p>
+          <ul class="facts">
+            <li>Slippage tolerance: <strong>1%</strong></li>
+            <li>Transaction deadline: <strong>10 minutes</strong></li>
+            <li>Network: <strong>GIWA Sepolia testnet</strong> — test funds only, no real value</li>
+            <li>Router: <a id="routerLink" href="#" target="_blank" rel="noopener">0x4FC9…C496</a></li>
+          </ul>
+          <p class="sdk-badge">
+            Built with the
+            <a href="https://www.npmjs.com/package/@ammora-protocol/sdk" target="_blank" rel="noopener">Ammora SDK</a>
+            <span id="sdkVersion">v0.3.9</span> ·
+            <a href="https://ammora-docs.vercel.app/guides/partner-quickstart" target="_blank" rel="noopener">Partner quickstart</a>
+          </p>
+          <p>
+            <a href="https://ammora.org/waitlist?ref=z5uo5i" target="_blank" rel="noopener">Join Ammora Season 2 →</a>
+            ·
+            <a href="https://ammora.org/waitlist?ref=z5uo5i" target="_blank" rel="noopener">Ammora waitlist</a>
+          </p>
+          <p class="fineprint" id="deployLine">Deployment verified against the Ammora SDK catalog…</p>
+        </section>
+      </main>
+
+      <footer>
+        GiwaSwap · GIWA Sepolia testnet · Built with the Ammora SDK · Not affiliated with Ammora.
+      </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
